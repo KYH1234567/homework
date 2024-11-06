@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: homework-deploy-blue
+  labels:
+    app: myapp
+    key: value
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      color: blue  
+  template:       
+    metadata:
+      labels:
+        color: blue
+    spec:
+      containers:
+        - name: homework-ctn
+          image: dhdtl12/homework:blue
+          ports:
+          - containerPort: 80
+          resources:
+            limits:
+              memory: "64Mi"
+              cpu: "500m"
+            requests:
+              memory: "32Mi"
+              cpu: "250m"
